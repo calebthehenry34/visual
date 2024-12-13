@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+        }
+        .chart-container {
+            width: 100%;
+            min-width: 360px;
+            max-width: 430px;
+            height: 500px;
+            margin: 0 auto;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .chart-wrapper {
+            position: relative;
+            height: calc(100% - 100px);
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <h2 style="color: #e5e7eb; font-size: 1.25rem; margin-bottom: 1rem; font-family: system-ui, -apple-system, sans-serif;">
+            Inspection By Type
+        </h2>
+        <div class="chart-wrapper">
+            <canvas id="inspectionChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('inspectionChart');
+        
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024'],
+                datasets: [
+                    {
+                        label: 'AUT',
+                        data: [0, 350, 0, 0, 0],
+                        backgroundColor: '#FF69B4'  // Pink
+                    },
+                    {
+                        label: 'EXTVI',
+                        data: [50, 0, 350, 0, 500],
+                        backgroundColor: '#40E0D0'  // Turquoise
+                    },
+                    {
+                        label: 'Ultrasonic Testing',
+                        data: [350, 300, 500, 300, 0],
+                        backgroundColor: '#9933FF'  // Purple
+                    },
+                    {
+                        label: 'Internal Visual Inspection',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: '#808080'  // Grey
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: {
+                            color: '#262626'
+                        },
+                        ticks: {
+                            color: '#6B7280'
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        max: 800,
+                        grid: {
+                            color: '#262626'
+                        },
+                        ticks: {
+                            color: '#6B7280',
+                            stepSize: 200
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            color: '#6B7280',
+                            padding: 20,
+                            font: {
+                                family: 'system-ui'
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Inspection Method',
+                            color: '#6B7280',
+                            font: {
+                                family: 'system-ui'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#121212',
+                        titleColor: '#d1d5db',
+                        bodyColor: '#9ca3af',
+                        padding: 16,
+                        cornerRadius: 8
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
